@@ -1,0 +1,78 @@
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+<link rel="import" href="/bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="emisor-evento">
+ <template is="dom-repeat" items ="[[data]]">
+   <style>
+   </style>
+   <div>
+     <input id="input" type="text" value="{{q::input}}" name="codigo" class="form-control" placeholder="codigo" autofocus>
+     <p>has tipeado: {{q}}</p>
+   </div>
+   <div class="form-group mx-auto">
+     <button id="getColas" class="btn btn-primary btn-block" on-click="handleResponse" type="submit">
+         Consultar - [[data]]
+     </button>
+   </div>
+   <dom-module id="ajax-avanzado">
+
+   <p>
+      [[mensaje]]
+    </p>
+  </dom-module>
+<iron-ajax
+ id="elajax"
+ url="http://localhost:3000/colas/P695792"
+ handle-as="json"
+ last-response="{{data}}"
+ on-response="respuestaRecibida"
+ >
+</iron-ajax>
+<paper-spinner alt="cargando..." active="[[cargando]]"></paper-spinner>
+ </template>
+
+ <script>
+   /**
+    * @customElement
+    * @polymer
+    */
+   class EmisorEvento extends Polymer.Element {
+    static get is() { return 'emisor-evento'; }
+     static get properties() {
+       return {
+         registro: {
+           type: String
+         },
+         id:{
+         type: Number
+         }
+       };
+       }
+       handleResponse(){
+//         console.log(data.detail.response);
+          this.$.elajax.generateRequest();
+//        console.log(data);
+//         this.id = data.detail.response.id;
+//         this.nombre = data.detail.response.first_name;
+     }
+  };
+  Polymer({
+      is: "ajax-avanzado",
+
+      properties: {
+        cargando: Boolean,
+      },
+  respuestaRecibida: function(e, request) {
+    console.log("logrado");
+  if(request.succeeded) {
+    this.mensaje = 'la solicitud se resolvió correctamente con código ' + request.status
+  } else {
+    this.mensaje = 'la solicitud nos ofreció resultados incorrectos, con código ' + request.status
+  }
+}
+});
+
+
+   window.customElements.define(EmisorEvento.is, EmisorEvento);
+ </script>
+</dom-module>

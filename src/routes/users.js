@@ -9,7 +9,7 @@ router.get('/users/signin',function(req,res){
 });
 
 router.post('/users/signin', passport.authenticate('local', {
-    successRedirect: '/colaboradores/consulta',
+    successRedirect: '/colabos/skills',
     failureRedirect: '/users/signin',
     failureFlash: true
   }));
@@ -18,13 +18,16 @@ router.get('/users/signup', function(req,res){
     res.render('users/signup.hbs');
 });
 router.post('/users/signup', async function(req,res){
-    const { name, email,password, confirm_password} = req.body;
+    const { name, registro,email,password, confirm_password} = req.body;
     const errors = [];
     if(name.length <= 0){
         errors.push({text: 'Por favor ingresa tu nombre'});
     }
     if(email.length <= 0){
         errors.push({text: 'Por favor ingresa tu email'});
+    }
+    if(registro.length <= 0){
+        errors.push({text: 'Por favor ingresa tu registro'});
     }
     if(password.length <= 0){
         errors.push({text: 'Por favor ingresa tu password'});
@@ -39,13 +42,14 @@ router.post('/users/signup', async function(req,res){
         errors.push({text: 'El password debe ser menor a 4 caracteres'});
     }
     if(errors.length > 0){
-        res.render('users/signup.hbs',{errors,name,email,password,confirm_password});
+        res.render('users/signup.hbs',{errors,name,registro,email, password,confirm_password});
     }else{
       const emailUser = await User.findOne({ email: email});
       if(emailUser){
-        res.redirect('/users/signup');
+        errors.push({text: 'El mail ya se encuentra registrado'});  
+        res.render('users/signup.hbs',{errors,name,registro,email, password,confirm_password});
       }else{  
-      const newUser = new User({name, email, password});
+      const newUser = new User({name,registro, email, password});
       newUser.password = await newUser.encryptPassword(password);
 //     newUser.password = await newUser.save(password);
       await newUser.save();

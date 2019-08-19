@@ -6,7 +6,7 @@ const mapiKey = 'apiKey=' + process.env.mapiKey;
 var queryStrField = 'f={"_id":0}&';
 
 // GET users a trav�s de mlab, obtiene los datos del cliente
-function getColaboradores(req, res) {
+function getColas(req, res) {
     var registro = req.params.registro;
 //    var registro = req;
     var queryString = 'q={"registro":"' + registro + '"}&';
@@ -29,8 +29,8 @@ function getColaboradores(req, res) {
                     res.status(404);
                 }
             }
-//            res.send(response);
-              res.json(response)  
+            res.send(response);
+//              res.json(response)  
         });
 };
-module.exports.getColaboradores = getColaboradores;
+module.exports.getColas = getColas;

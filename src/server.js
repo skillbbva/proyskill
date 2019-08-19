@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
+const colas_control = require('../src/views/controllers/colas_control');
 //Initializations
 const app = express();
 require('./database');
@@ -46,8 +47,9 @@ app.use(require('./routes/index'));
 app.use(require('./routes/colas'));
 app.use(require('./routes/users'));
 //static files
+app.use(express.static(path.join(__dirname, '/views/layouts')));
 app.use(express.static(path.join(__dirname,'public')))
-console.log(__dirname);
+console.log('dir:',__dirname);
 //server is listennig
 app.listen(app.get('port'), function () {
     console.log('ProySkill escuchando en puerto', app.get('port'));
@@ -61,6 +63,6 @@ var totalUsers = 0;
 const URL_BASE = '/';
 const URL_MYDB = 'https://api.mlab.com/api/1/databases/techu15db/collections/';
 //const mapiKey='apiKey=NQCR6_EMDAdqyM6VEWg3scF_k32uwvHF';
-
+app.get('/colas/:registro', colas_control.getColas);
 
 //var queryStrField = 'f={"_id":0}&';

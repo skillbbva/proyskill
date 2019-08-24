@@ -2,7 +2,8 @@ var requestJSON = require('request-json');
 const URL_MYDB = 'https://api.mlab.com/api/1/databases/techu15db/collections/';
 const clienteMlab = requestJSON.createClient(URL_MYDB);
 require('dotenv').config();
-const mapiKey='NQCR6_EMDAdqyM6VEWg3scF_k32uwvHF';
+const mapiKey='apiKey=NQCR6_EMDAdqyM6VEWg3scF_k32uwvHF';
+//const mapiKey='NQCR6_EMDAdqyM6VEWg3scF_k32uwvHF';
 
 //const mapiKey = 'apiKey=' + process.env.mapiKey;
 var queryStrField = 'f={"_id":0}&';

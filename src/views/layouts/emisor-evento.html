@@ -81,11 +81,11 @@
       buscar: function() {
         var theID = this.$.name.value;
 
-        this.$.elajax.url="http://localhost:3000/colas/" + theID 
+        this.$.elajax.url="/colas/" + theID 
         this.$.elajax.generateRequest();
-        this.$.elaplis.url="http://localhost:3000/aplis/" + theID 
+        this.$.elaplis.url="/aplis/" + theID 
         this.$.elaplis.generateRequest();
-        this.$.elconos.url="http://localhost:3000/conos/" + theID 
+        this.$.elconos.url="/conos/" + theID 
         this.$.elconos.generateRequest();
 
       }

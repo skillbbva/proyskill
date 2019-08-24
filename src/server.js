@@ -59,9 +59,10 @@ var bodyParser = require('body-parser');
 var requestJSON = require('request-json');
 
 app.use(bodyParser.json());
-var totalUsers = 0;
-const URL_BASE = '/';
-const URL_MYDB = 'https://api.mlab.com/api/1/databases/techu15db/collections/';
+app.use(requestJSON);
+//var totalUsers = 0;
+//const URL_BASE = '/';
+//const URL_MYDB = 'https://api.mlab.com/api/1/databases/techu15db/collections/';
 //const mapiKey='apiKey=NQCR6_EMDAdqyM6VEWg3scF_k32uwvHF';
 app.get('/colas/:registro', colas_control.getColas);
 app.get('/conos/:registro', colas_control.getConos);

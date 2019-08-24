@@ -40,21 +40,21 @@
 
 <iron-ajax
  id="elajax"
- url="http://localhost:3000/colas/" + theID
+ url="/colas/" + theID
  handle-as="json"
  last-response="{{data}}"
  >
 </iron-ajax>
 <iron-ajax
  id="elconos"
- url="http://localhost:3000/conos/" + theID
+ url="/conos/" + theID
  handle-as="json"
  last-response="{{dataC}}"
  >
 </iron-ajax>
 <iron-ajax
  id="elaplis"
- url="http://localhost:3000/aplis/" + theID
+ url="/aplis/" + theID
  handle-as="json"
  last-response="{{dataA}}"
  >
@@ -80,6 +80,7 @@
 
       buscar: function() {
         var theID = this.$.name.value;
+
         this.$.elajax.url="http://localhost:3000/colas/" + theID 
         this.$.elajax.generateRequest();
         this.$.elaplis.url="http://localhost:3000/aplis/" + theID 

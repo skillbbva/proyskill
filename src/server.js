@@ -64,5 +64,7 @@ const URL_BASE = '/';
 const URL_MYDB = 'https://api.mlab.com/api/1/databases/techu15db/collections/';
 //const mapiKey='apiKey=NQCR6_EMDAdqyM6VEWg3scF_k32uwvHF';
 app.get('/colas/:registro', colas_control.getColas);
+app.get('/conos/:registro', colas_control.getConos);
+app.get('/aplis/:registro', colas_control.getAplis);
 
 //var queryStrField = 'f={"_id":0}&';

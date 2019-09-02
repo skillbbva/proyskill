@@ -32,7 +32,11 @@ router.get('/colaboradores/:registro', function(req,res){
 router.get('/colabos/skills',isAuthenticated , function(req,res){
     res.render('../views/layouts/skills.hbs');
 });
-
+router.get('/layouts/modiConos', function(req,res){
+    res.render('../public/index.html');
+//    console.log(res);
+//   res.render('controllers/listar.hbs', { respuesta } );
+});
 //router.get('/colaboradores/:registro',isAuthenticated , function(req,res){
 //    res.render('controllers/listar.hbs');
 //});

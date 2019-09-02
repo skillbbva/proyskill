@@ -6,6 +6,11 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
 const colas_control = require('../src/views/controllers/colas_control');
+var hbs = require('hbs');
+
+var instance1 = hbs.create();
+var instance2 = hbs.create();
+
 //Initializations
 const app = express();
 require('./database');
@@ -14,6 +19,10 @@ require('./config/passport');
 app.set('port', process.env.PORT || 3000 );
 app.set('views', path.join(__dirname,'views'));
 console.log(app.get('views'));
+app.engine('html', instance1.__express);
+app.engine('hbs', instance2.__express);
+
+
 app.engine('.hbs',exphbs({
     defaultLayout:'main',
     layoutsDir: path.join(app.get('views'),'layouts'),
@@ -48,7 +57,7 @@ app.use(require('./routes/colas'));
 app.use(require('./routes/users'));
 //static files
 app.use(express.static(path.join(__dirname, '/views/layouts')));
-app.use(express.static(path.join(__dirname,'public')))
+app.use(express.static(path.join(__dirname,'/public')));
 console.log('dir:',__dirname);
 //server is listennig
 app.listen(app.get('port'), function () {
@@ -63,8 +72,11 @@ var totalUsers = 0;
 const URL_BASE = '/';
 const URL_MYDB = 'https://api.mlab.com/api/1/databases/techu15db/collections/';
 const mapiKey='apiKey=NQCR6_EMDAdqyM6VEWg3scF_k32uwvHF';
-app.get('/colas/:registro', colas_control.getColas);
-app.get('/conos/:registro', colas_control.getConos);
-app.get('/aplis/:registro', colas_control.getAplis);
 
+app.get('/conos/:registro', colas_control.getConos);
+app.post('/conos/:registro', colas_control.insConos);
+app.put('/conos/:registro', colas_control.uptConos);
+app.delete('/conos/:registro', colas_control.deleteConos);
+app.get('/aplis/:registro', colas_control.getAplis);
+app.get('/colas/:registro', colas_control.getColas);
 //var queryStrField = 'f={"_id":0}&';

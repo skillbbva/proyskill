@@ -1,0 +1,94 @@
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+<link rel="import" href="/bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="emisor-evento">
+ <template items="[[data]]">
+  <div class="col-md-4 mx-auto">
+     <div class="input-group mb-3">
+         <input id="name" name="input2" type="text" class="form-control" placeholder="Código" aria-label="Código" aria-describedby="button-addon2" autofocus>
+         <div class="input-group-append">
+              <button type="button" on-click="buscar" class="btn btn-primary btn-sm">Buscar</button>
+         </div>
+     </div>
+     <div class="card" style="width: 18rem;">
+          <template is="dom-repeat" items="[[data]]">
+           <h3>Datos Principales</h3>  
+           <ul class="list-group list-group-flush">
+            <li class="list-group-item">[[item.nombre]]_[[item.ape_pat]]_[[item.ape_mat]]</li>
+            <li class="list-group-item">[[item.email]]</li>
+            <li class="list-group-item">Unidad:[[item.unidad]]</li>
+            <li class="list-group-item">Perfil:[[item.perfil]]</li>        
+           </ul>
+          </template>
+     </div>
+  </div>
+  <h3>Conocimientos de Aplicativos</h3>    
+  <template is="dom-repeat" items="[[dataA]]">
+        <ul class="list-group list-group-flush">
+       <li class="list-group-item">[[item.descripcion]]</li>
+       <li class="list-group-item">[[item.tipo]]</li>
+       <li class="list-group-item">Unidad:[[item.nivel]]</li>
+      </ul>
+  </template>
+  <h3>Conocimientos Generales</h3>
+  <template is="dom-repeat" items="[[dataC]]">
+        <ul class="list-group list-group-flush">
+       <li class="list-group-item">[[item.conos]]</li>
+       <li class="list-group-item">[[item.certificado]]</li>
+      </ul>
+  </template>
+
+<iron-ajax
+ id="elajax"
+ url="/colas/" + theID
+ handle-as="json"
+ last-response="{{data}}"
+ >
+</iron-ajax>
+<iron-ajax
+ id="elconos"
+ url="/conos/" + theID
+ handle-as="json"
+ last-response="{{dataC}}"
+ >
+</iron-ajax>
+<iron-ajax
+ id="elaplis"
+ url="/aplis/" + theID
+ handle-as="json"
+ last-response="{{dataA}}"
+ >
+</iron-ajax>
+
+<!--    <ul>
+    <template is="dom-repeat" items="[[data]]">
+      <li>[[item.nombre]]</li>
+    </template>
+    </ul>
+  -->
+ </template>
+
+ <script>
+     
+      
+    Polymer({
+      is: "emisor-evento",
+      properties: {
+        cargando: Boolean,
+        data: Array
+      },
+
+      buscar: function() {
+        var theID = this.$.name.value;
+
+        this.$.elajax.url="/colas/" + theID 
+        this.$.elajax.generateRequest();
+        this.$.elaplis.url="/aplis/" + theID 
+        this.$.elaplis.generateRequest();
+        this.$.elconos.url="/conos/" + theID 
+        this.$.elconos.generateRequest();
+
+      }
+    });   
+ </script>
+</dom-module>

@@ -96,7 +96,7 @@ function deleteConos(req, res){
     clienteMlab.get('conocimiento?' + queryString + queryStrField + mapiKey,
 //    clienteMlab.get('conocimiento?' + mapiKey,
       function(error, respuestaMLab, body){
-        newID = req.body.length + 1;
+        newID = body.length + 1;
         var newConos = {
           "id" : newID,
           "conos" : req.body.conos,
@@ -232,7 +232,7 @@ function uptAplis(req, res) {
         clienteMlab.get('aplicativo?' + queryString + queryStrField + mapiKey,
     //    clienteMlab.get('conocimiento?' + mapiKey,
           function(error, respuestaMLab, body){
-            newID = req.body.length + 1;
+            newID = body.length + 1;
             var newAplis = {
               "id" : newID,
               "codigo" : req.body.codigo,

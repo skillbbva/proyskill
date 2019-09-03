@@ -17,10 +17,11 @@ $(function (){
                             <input type="text" class="conos" value="${conos.conos}">
                         </td>
                         <td>
-                        <input type="checkbox" class="certificado" ${conos.certificado} value="${conos.certificado}">
-                        </td>
-                        <td>
-                          <input type="file" class="image" id="image" value="Adjunte certificado">
+                        <select class="certificado">
+                            <option value="${conos.certificado}" selected>${conos.certificado}</option>
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
+                        </select>
                         </td>
                         <td>
                             <button class="update-button">Update</button>
@@ -37,10 +38,11 @@ $(function (){
                             <input type="text" class="conosi" >
                         </td>
                         <td>
-                        <input type="checkbox" class="certificadoi" >
-                        </td>
-                        <td>
-                            <input type="file" class="imagei" id="image" value="Adjunte certificado">
+                        <select class="certificadoi">
+                            <option selected>Seleccione</option>
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
+                        </select>
                         </td>
                         <td>
                             <button class="new-button">Nuevo</button>
@@ -53,30 +55,13 @@ $(function (){
     });
     $('#conosForm').on('submit',function(e){
         e.preventDefault();
-//        var theID = this.$.name.value;
-//        console.log(theID);
-//        let newConos = $('#newConos');
-//        $.ajax({
-//            url:'/conos'+theID,
-//            method: 'POST',
-//            data:{
-//                Id:
-//                conos: newConos.val()
-//            },
-//            success
-//        })
     });
     $('table').on('click','.update-button',function(){
        let row = $(this).closest('tr'); 
        let registro = row.find('.registro').text();
        let id =  Number(row.find('.id').text());
        let conos = row.find('.conos').val();
-       let certificado ="";
-       if(row.find('.certificado').prop("checked") ){
-           certificado ="checked";
-       }
-
-        console.log(id);
+       let certificado = row.find('.certificado').val();
        $.ajax({
            url:"/conos/" + registro,
            method: 'PUT',
@@ -119,12 +104,8 @@ $(function (){
         let registro = row.find('.registroi').text();
 //        let id =  body.length + 1;
         let conos = row.find('.conosi').val();
-        let imagen = document.getElementById('imagei').imagen;
-        let certificado ="";
-        console.log(imagen);
-        if(row.find('.certificadoi').prop("checked") ){
-            certificado ="checked";
-        }
+//        let imagen = document.getElementById('imagei').imagen;
+        let certificado = row.find('.certificadoi').val();
         
 //         console.log(id);
         $.ajax({
@@ -134,8 +115,8 @@ $(function (){
   //              id:id,
                 conos:conos,
                 certificado:certificado,
-                registro:registro,
-                imagen:imagen
+                registro:registro
+  //              imagen:imagen
             },
             success: function(response){
              console.log(response);
@@ -143,5 +124,4 @@ $(function (){
             }
         })
      });
-
 })

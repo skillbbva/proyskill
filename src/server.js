@@ -72,11 +72,17 @@ var totalUsers = 0;
 const URL_BASE = '/';
 const URL_MYDB = 'https://api.mlab.com/api/1/databases/techu15db/collections/';
 const mapiKey='apiKey=NQCR6_EMDAdqyM6VEWg3scF_k32uwvHF';
-
+//apis de conocimientos del colaborador
 app.get('/conos/:registro', colas_control.getConos);
 app.post('/conos/:registro', colas_control.insConos);
 app.put('/conos/:registro', colas_control.uptConos);
 app.delete('/conos/:registro', colas_control.deleteConos);
+//apis de aplicativos del colaborador
 app.get('/aplis/:registro', colas_control.getAplis);
+app.post('/aplis/:registro', colas_control.insAplis);
+app.put('/aplis/:registro', colas_control.uptAplis);
+app.delete('/aplis/:registro', colas_control.deleteAplis);
+
+
 app.get('/colas/:registro', colas_control.getColas);
 //var queryStrField = 'f={"_id":0}&';

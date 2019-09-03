@@ -25,16 +25,16 @@
   <h3>Conocimientos de Aplicativos</h3>    
   <template is="dom-repeat" items="[[dataA]]">
         <ul class="list-group list-group-flush">
-       <li class="list-group-item">[[item.descripcion]]</li>
-       <li class="list-group-item">[[item.tipo]]</li>
-       <li class="list-group-item">Unidad:[[item.nivel]]</li>
+       <li class="list-group-item">Aplic:[[item.descripcion]]</li>
+       <li class="list-group-item">Entorno:[[item.tipo]]</li>
+       <li class="list-group-item">Nivel:[[item.nivel]]</li>
       </ul>
   </template>
   <h3>Conocimientos Generales</h3>
   <template is="dom-repeat" items="[[dataC]]">
         <ul class="list-group list-group-flush">
        <li class="list-group-item">[[item.conos]]</li>
-       <li class="list-group-item">[[item.certificado]]</li>
+       <li class="list-group-item">Certificado:[[item.certificado]]</li>
       </ul>
   </template>
 

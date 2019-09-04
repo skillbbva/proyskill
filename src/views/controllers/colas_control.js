@@ -97,6 +97,10 @@ function deleteConos(req, res){
 //    clienteMlab.get('conocimiento?' + mapiKey,
       function(error, respuestaMLab, body){
         newID = body.length + 1;
+<<<<<<< HEAD
+=======
+        console.log("new" +  newID);
+>>>>>>> 05eb7b4424984bd72a4242c2b72a989356660ce7
         var newConos = {
           "id" : newID,
           "conos" : req.body.conos,
@@ -233,6 +237,10 @@ function uptAplis(req, res) {
     //    clienteMlab.get('conocimiento?' + mapiKey,
           function(error, respuestaMLab, body){
             newID = body.length + 1;
+<<<<<<< HEAD
+=======
+            console.log("newID:"+ newID);
+>>>>>>> 05eb7b4424984bd72a4242c2b72a989356660ce7
             var newAplis = {
               "id" : newID,
               "codigo" : req.body.codigo,

@@ -26,12 +26,14 @@
                   Colaboradores
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/colabos/skills">Consultar</a>
-                  <a class="dropdown-item" href="/layouts/modiConos">Modificar Conocimientos</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="/users/logout">Salir</a>
-                </div>
-              </li>
+                    <a class="dropdown-item" href="/colabos/skills">Consultar</a>
+                    <a class="dropdown-item" href="/layouts/modiConos">Modificar Conocimientos</a>
+                    <a class="dropdown-item" href="/layouts/modiAplis">Modificar Aplicativos</a>          
+                    <a class="dropdown-item" href="/layouts/modiPrinc">Modificar Datos Principales</a>                    
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/users/logout">Salir</a>
+                  </div>
+                        </li>
             </ul>
           </div>    
         </div>
@@ -39,21 +41,23 @@
 </head>        
 <body>
     <hr>
-    <div align="center">
-    <form id="conosForm">
-            <input type="text" id="name">
-            <button id="getConos">
-                    Buscar Colaborador
-            </button>
+
+    <form id="conosForm" class="form-inline" >
+        <div class="container" >
+            <div class="col-auto" align="center">
+              <input type="text" class="form-control" id="name">
+              <button id="getConos" class="btn btn-dark">
+                      Buscar Colaborador
+              </button>
+            </div>  
+        </div>    
     </form>    
-   </div>
+
     <hr>
    <div align="center">
-    <table>
+    <table id="table">
         <thead>
-             
             <tr>
-                <th></th>
                 <th align="center">Conocimiento</th>
                 <th align="center">Certificado</th>
                 <th align="center">Acciones</th>                                
@@ -68,6 +72,6 @@
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>    
-    <script src="/app.js" charset="utf-8"></script>
+    <script src="/conos.js" charset="utf-8"></script>
 </body>
 </html>

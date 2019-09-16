@@ -33,10 +33,13 @@ router.get('/colabos/skills',isAuthenticated , function(req,res){
     res.render('../views/layouts/skills.hbs');
 });
 router.get('/layouts/modiConos', function(req,res){
-    res.render('../public/index.html');
+    res.render('../public/conos.html');
 });
 router.get('/layouts/modiAplis', function(req,res){
     res.render('../public/aplis.html');
+});
+router.get('/layouts/modiPrinc', function(req,res){
+    res.render('../public/princ.html');
 });
 
 //router.get('/colaboradores/:registro',isAuthenticated , function(req,res){

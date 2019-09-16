@@ -12,7 +12,7 @@ $(function (){
                 conos.forEach(conos =>{
                     tbody.append(`
                     <tr>
-                        <td class="id">${Number(conos.id)}</td>
+                        <td class="id" style="display:none">${Number(conos.id)}</td>
                         <td>
                             <input type="text" class="conos" value="${conos.conos}">
                         </td>
@@ -27,13 +27,14 @@ $(function (){
                             <button class="update-button">Update</button>
                             <button class="delete-button">Delete</button>
                         </td>
-                        <td class="registro" value="${theID}">${theID}</td>
-                    </tr>
+                        <td class="registro" style="display:none">${theID}</td>
+                    </tr>                        
+                    
                     `)
                 })
                 tbody.append(`
                     <tr>
-                        <td class="id">N</td>
+                        <td class="id" style="display:none"></td>
                         <td>
                             <input type="text" class="conosi" >
                         </td>
@@ -47,7 +48,7 @@ $(function (){
                         <td>
                             <button class="new-button">Nuevo</button>
                         </td>
-                        <td class="registroi" value="${theID}">${theID}</td>
+                        <td class="registroi" style="display:none">${theID}</td>
                     </tr>   
                 `)
             }
@@ -59,9 +60,11 @@ $(function (){
     $('table').on('click','.update-button',function(){
        let row = $(this).closest('tr'); 
        let registro = row.find('.registro').text();
-       let id =  Number(row.find('.id').text());
+       let id = Number(row.find('.id').text());
        let conos = row.find('.conos').val();
        let certificado = row.find('.certificado').val();
+       console.log(id);
+       console.log(registro);
        $.ajax({
            url:"/conos/" + registro,
            method: 'PUT',
@@ -71,6 +74,7 @@ $(function (){
                certificado:certificado,
                registro:registro
            },
+
            success: function(response){
             console.log(response);
             $('#getConos').click();

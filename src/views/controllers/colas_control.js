@@ -42,9 +42,8 @@ function uptConos(req, res) {
 //    var id = req.body.id;
     var conos = req.body.conos;
     var certificado = req.body.certificado;
-    var registro = req.body.registro;
-    
-    console.log("par,body"+req.params,req.body);
+    var registro = req.params.registro;    
+    console.log("par,body-"+req.params.registro,req.body);
     var id = req.body.id;
     var queryStringID = 'q={"registro":"' + registro + '","id":' + id + '}&';
     req.body.id = Number(id);

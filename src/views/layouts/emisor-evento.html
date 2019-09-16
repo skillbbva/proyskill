@@ -18,11 +18,18 @@
             <li class="list-group-item">[[item.email]]</li>
             <li class="list-group-item">Unidad:[[item.unidad]]</li>
             <li class="list-group-item">Perfil:[[item.perfil]]</li>        
+            <li class="list-group-item">Nivel Host:[[item.host]]</li>                    
+            <li class="list-group-item">Nivel Distr/Legacy:[[item.distrilegacy]]</li>                                
+            <li class="list-group-item">Nivel Nacar:[[item.nacar]]</li>                                
+            <li class="list-group-item">Nivel Front:[[item.front]]</li>                                
+            <li class="list-group-item">Nivel Api&Service:[[item.apiservice]]</li>                                
+            <li class="list-group-item">Nivel data:[[item.data]]</li>                                
+            <li class="list-group-item">Nivel backend:[[item.backend]]</li>                                                        
            </ul>
           </template>
      </div>
   </div>
-  <h3>Conocimientos de Aplicativos</h3>    
+  <h3>Aplicativos</h3>    
   <template is="dom-repeat" items="[[dataA]]">
         <ul class="list-group list-group-flush">
        <li class="list-group-item">Aplic:[[item.descripcion]]</li>
@@ -30,7 +37,7 @@
        <li class="list-group-item">Nivel:[[item.nivel]]</li>
       </ul>
   </template>
-  <h3>Conocimientos Generales</h3>
+  <h3>Conocimientos</h3>
   <template is="dom-repeat" items="[[dataC]]">
         <ul class="list-group list-group-flush">
        <li class="list-group-item">[[item.conos]]</li>

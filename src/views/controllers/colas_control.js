@@ -3,15 +3,11 @@ const URL_MYDB = 'https://api.mlab.com/api/1/databases/techu15db/collections/';
 const clienteMlab = requestJSON.createClient(URL_MYDB);
 require('dotenv').config();
 const mapiKey='apiKey=NQCR6_EMDAdqyM6VEWg3scF_k32uwvHF';
-//const mapiKey='NQCR6_EMDAdqyM6VEWg3scF_k32uwvHF';
-
-//const mapiKey = 'apiKey=' + process.env.mapiKey;
 var queryStrField = 'f={"_id":0}&';
 
 // GET users a trav�s de mlab, obtiene los datos del cliente
 function getColas(req, res) {
     var registro = req.params.registro;
-//    var registro = req;
     var queryString = 'q={"registro":"' + registro + '"}&';
     console.log(queryString);
     clienteMlab.get('colaborador?' + queryString + queryStrField + mapiKey,
@@ -33,13 +29,11 @@ function getColas(req, res) {
                 }
             }
             res.json(response);
-//              res.json(response)  
         });
 };
 module.exports.getColas = getColas;
 // PUT conocimiento a trav�s de mlab, obtiene los datos del cliente
 function uptConos(req, res) {
-//    var id = req.body.id;
     var conos = req.body.conos;
     var certificado = req.body.certificado;
     var registro = req.params.registro;    
@@ -47,7 +41,6 @@ function uptConos(req, res) {
     var id = req.body.id;
     var queryStringID = 'q={"registro":"' + registro + '","id":' + id + '}&';
     req.body.id = Number(id);
-//    req.body.certificado = req.body.certificado;
     console.log("putConos"+queryStringID);
     clienteMlab.get('conocimiento?'+ queryStringID + mapiKey,
       function(error, respuestaMLab, body) {
@@ -70,18 +63,14 @@ function deleteConos(req, res){
     console.log("par,body"+req.params,req.body);
     var id = Number(req.body.id);
     var queryStringID = 'q={"registro":"' + registro + '","id":' + id + '}&';
-//    req.body.id = Number(id);
-//    req.body.certificado = Boolean(req.body.certificado);
     console.log("deleteConos"+queryStringID);
     clienteMlab.get('conocimiento?' +  queryStringID + mapiKey,
       function(error, respuestaMLab, body){
         var respuesta = body[0];
-//          console.log(respuesta._id);
           clienteMlab.delete(URL_MYDB + 'conocimiento/' + respuesta._id.$oid +'?'+ mapiKey,
           function(error, respuestaMLab,body){
             var response = {};
             res.json(response);
-//            res.send(body);
         });
       });
   };
@@ -89,11 +78,9 @@ function deleteConos(req, res){
  
  function insConos(req, res){
     var registro = req.params.registro;
-//    var registro = req;
     var queryString = 'q={"registro":"' + registro + '"}&';
     console.log(queryString);
     clienteMlab.get('conocimiento?' + queryString + queryStrField + mapiKey,
-//    clienteMlab.get('conocimiento?' + mapiKey,
       function(error, respuestaMLab, body){
         newID = body.length + 1;
         var newConos = {
@@ -117,7 +104,6 @@ function deleteConos(req, res){
 // GET users a trav�s de mlab, obtiene los datos del cliente
 function getConos(req, res) {
     var registro = req.params.registro;
-//    var registro = req;
     var queryString = 'q={"registro":"' + registro + '"}&';
     console.log(queryString);
     clienteMlab.get('conocimiento?' + queryString + queryStrField + mapiKey,
@@ -139,14 +125,12 @@ function getConos(req, res) {
                 }
             }
             res.json(response);
-//              res.json(response)  
         });
 };
 module.exports.getConos = getConos;
 
 function getAplis(req, res) {
     var registro = req.params.registro;
-//    var registro = req;
     var queryString = 'q={"registro":"' + registro + '"}&';
     console.log(queryString);
     clienteMlab.get('aplicativo?' + queryString + queryStrField + mapiKey,
@@ -168,13 +152,11 @@ function getAplis(req, res) {
                 }
             }
             res.json(response);
-//              res.json(response)  
         });
 };
 module.exports.getAplis = getAplis;
 
 function uptAplis(req, res) {
-    //    var id = req.body.id;
         var codigo = req.body.codigo;
         var descripcion = req.body.descripcion;
         var tipo = req.body.tipo;
@@ -183,7 +165,6 @@ function uptAplis(req, res) {
         var id = req.body.id;
         var queryStringID = 'q={"registro":"' + registro + '","id":' + id + '}&';
         req.body.id = Number(id);
-    //    req.body.certificado = req.body.certificado;
         console.log("putAplis"+queryStringID);
         clienteMlab.get('aplicativo?'+ queryStringID + mapiKey,
           function(error, respuestaMLab, body) {
@@ -206,18 +187,14 @@ function uptAplis(req, res) {
         var registro = req.body.registro;
         var id = req.body.id;
         var queryStringID = 'q={"registro":"' + registro + '","id":' + id + '}&';
-    //    req.body.id = Number(id);
-    //    req.body.certificado = Boolean(req.body.certificado);
         console.log("deleteAplis"+queryStringID);
         clienteMlab.get('aplicativo?' +  queryStringID + mapiKey,
           function(error, respuestaMLab, body){
             var respuesta = body[0];
-    //          console.log(respuesta._id);
               clienteMlab.delete(URL_MYDB + 'aplicativo/' + respuesta._id.$oid +'?'+ mapiKey,
               function(error, respuestaMLab,body){
                 var response = {};
                 res.json(response);
-    //            res.send(body);
             });
           });
       };
@@ -225,11 +202,9 @@ function uptAplis(req, res) {
      
      function insAplis(req, res){
         var registro = req.params.registro;
-    //    var registro = req;
         var queryString = 'q={"registro":"' + registro + '"}&';
         console.log(queryString);
         clienteMlab.get('aplicativo?' + queryString + queryStrField + mapiKey,
-    //    clienteMlab.get('conocimiento?' + mapiKey,
           function(error, respuestaMLab, body){
             newID = body.length + 1;
             var newAplis = {

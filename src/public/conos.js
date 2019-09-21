@@ -106,21 +106,16 @@ $(function (){
     $('table').on('click','.new-button',function(){
         let row = $(this).closest('tr'); 
         let registro = row.find('.registroi').text();
-//        let id =  body.length + 1;
         let conos = row.find('.conosi').val();
-//        let imagen = document.getElementById('imagei').imagen;
         let certificado = row.find('.certificadoi').val();
         
-//         console.log(id);
         $.ajax({
             url:"/conos/" + registro,
             method: 'POST',
             data:{
-  //              id:id,
                 conos:conos,
                 certificado:certificado,
                 registro:registro
-  //              imagen:imagen
             },
             success: function(response){
              console.log(response);

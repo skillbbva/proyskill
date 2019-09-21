@@ -51,11 +51,9 @@ router.post('/users/signup', async function(req,res){
       }else{  
       const newUser = new User({name,registro, email, password});
       newUser.password = await newUser.encryptPassword(password);
-//     newUser.password = await newUser.save(password);
       await newUser.save();
       res.redirect('/users/signin');
       }
-//        res.send('ok');
     }
 });
 

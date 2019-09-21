@@ -82,18 +82,6 @@ $(function (){
     });
     $('#aplisForm').on('submit',function(e){
         e.preventDefault();
-//        var theID = this.$.name.value;
-//        console.log(theID);
-//        let newConos = $('#newConos');
-//        $.ajax({
-//            url:'/conos'+theID,
-//            method: 'POST',
-//            data:{
-//                Id:
-//                conos: newConos.val()
-//            },
-//            success
-//        })
     });
     $('table').on('click','.update-button',function(){
        let row = $(this).closest('tr'); 
@@ -103,10 +91,6 @@ $(function (){
        let descripcion = row.find('.descripcion').val();       
        let tipo = row.find('.tipo').val();              
        let nivel = row.find('.nivel').val();                     
-//       if(row.find('.certificado').prop("checked") ){
-//           certificado ="checked";
-//       }
-
         console.log(id);
        $.ajax({
            url:"/aplis/" + registro,
@@ -139,8 +123,6 @@ $(function (){
                 id:id,
                 codigo:codigo,
                 descripcion:descripcion,
-//                tipo:nivel,
-//                nivel:nivel,                                
                 registro:registro
             },    
             success: function(response){
@@ -152,7 +134,6 @@ $(function (){
     $('table').on('click','.new-button',function(){
         let row = $(this).closest('tr'); 
         let registro = row.find('.registroi').text();
-//        let id =  body.length + 1;
         let codigo = row.find('.codigoi').val();
         let descripcion = row.find('.descripcioni').val();       
         let nivel = row.find('.niveli').val();
@@ -161,7 +142,6 @@ $(function (){
             url:"/aplis/" + registro,
             method: 'POST',
             data:{
-//                id:id,
                 codigo:codigo,
                 descripcion:descripcion,
                 tipo:tipo,

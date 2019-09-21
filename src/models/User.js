@@ -9,12 +9,6 @@ const UserSchema = new Schema({
     password: {type: String, required: true},
     date: {type: Date, default: Date.now}
 });
-//UserSchema.method('encryptPassword', async function(password) {
-//UserSchema.methods.encryptPassword = async (password) => {
-//    const salt = await bcrypt.genSalt(10);
-//    const hash = await bcrypt.hash(password, salt);
-//    return hash;
-//  });
 
 
 UserSchema.methods.matchPassword = async function (password){
@@ -30,10 +24,7 @@ UserSchema.method({
       return bcrypt.compareSync(password, this.password);
     }
   });  
-//  UserSchema.method.validatePassword('validatePassword',async function validatePassword(data) {
-//    return bcrypt.compare(data, this.password);
-//  });
   
 const model = mongoose.model('User',UserSchema);
 module.exports = model;
-//module.exports = mongoose.model('User', UserSchema);
+

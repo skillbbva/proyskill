@@ -14,7 +14,6 @@ passport.use(new LocalStrategy({
   } else {
     // Match Password's User
     const match = await user.matchPassword(password);
-//    console.log(match);
     if(match) {
       return done(null, user);
     } else {

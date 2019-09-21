@@ -85,4 +85,4 @@ app.delete('/aplis/:registro', colas_control.deleteAplis);
 
 
 app.get('/colas/:registro', colas_control.getColas);
-//var queryStrField = 'f={"_id":0}&';
+

@@ -84,5 +84,11 @@ app.put('/aplis/:registro', colas_control.uptAplis);
 app.delete('/aplis/:registro', colas_control.deleteAplis);
 
 
+
+//apis de del colaborador
 app.get('/colas/:registro', colas_control.getColas);
+//app.get('/princ/:registro', colas_control.getPrinc);
+//app.post('/princ/:registro', colas_control.insPrinc);
+app.put('/princ/:registro', colas_control.uptPrinc);
+//app.delete('/princ/:registro', colas_control.deleteAplis);
 

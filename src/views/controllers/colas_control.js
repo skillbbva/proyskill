@@ -55,6 +55,31 @@ function uptConos(req, res) {
 };
 module.exports.uptConos = uptConos;
 
+// PUT conocimiento a trav�s de mlab, obtiene los datos del cliente
+function uptPrinc(req, res) {
+    var conos = req.body.conos;
+    var certificado = req.body.certificado;
+    var registro = req.params.registro;    
+    console.log("par,body-"+req.params.registro,req.body);
+    var id = req.body.id;
+    var queryStringID = 'q={"registro":"' + registro + '"}&';
+
+    console.log("putPrinc"+queryStringID);
+    clienteMlab.get('colaborador?'+ queryStringID + mapiKey,
+      function(error, respuestaMLab, body) {
+       var cambio = '{"$set":' + JSON.stringify(req.body) + '}';
+       console.log(cambio);
+       clienteMlab.put(URL_MYDB +'colaborador?' + queryStringID + mapiKey, JSON.parse(cambio),
+        function(error, respuestaMLab, body) {
+         console.log("err:"+ error + respuestaMLab);   
+         res.send(body);
+        });
+      });
+};
+module.exports.uptPrinc = uptPrinc;
+
+
+
 function deleteConos(req, res){
     var conos = req.body.conos;
     var certificado = req.body.certificado;

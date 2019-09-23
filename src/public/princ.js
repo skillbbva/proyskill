@@ -4,7 +4,7 @@ $(function (){
         var theID = aplisForm.name.value;
         console.log(theID);
         $.ajax({
-            url:'/aplis/'+theID,
+            url:'/colas/'+theID,
             success: function(aplis){
                 console.log(aplis);
                 let tbody = $('tbody');
@@ -12,71 +12,77 @@ $(function (){
                 aplis.forEach(aplis =>{
                     tbody.append(`
                     <tr>
-                        <td class="id" style="display:none">${Number(aplis.id)}</td>
-                        <td>
-                        <input type="text" class="codigo" value="${aplis.codigo}">
-                        </td>
-                        <td>
-                        <input type="text" class="descripcion" ${aplis.descripcion} value="${aplis.descripcion}">
-                        </td>
+                        <td class="id" style="display:none">${aplis.registro}</td>
                         <td>    
-                            <select class="tipo">
-                                <option value="${aplis.tipo}" selected>${aplis.tipo}</option>
-                                <option value="Técnico">Técnico</option>
-                                <option value="Funcional">Funcional</option>
-                                <option value="Ether">Ether</option>
+                            <select class="host">
+                                <option value="${aplis.host}" selected>${aplis.host}</option>
+                                <option value="Avanzado">Avanzado</option>                                
+                                <option value="Alto">Alto</option>
+                                <option value="Medio">Medio</option>
+                                <option value="Bajo">Bajo</option>
                             </select>
                         </td>
                         <td>    
-                            <select class="nivel" >
-                                <option value="${aplis.nivel}" selected>${aplis.nivel}</option>
-                                <option value="Básico">Básico</option>
-                                <option value="Intermedio">Intermedio</option>
+                            <select class="nacar" >
+                                <option value="${aplis.nacar}" selected>${aplis.nacar}</option>
                                 <option value="Avanzado">Avanzado</option>
-                                <option value="Experto">Experto</option>
+                                <option value="Alto">Alto</option>
+                                <option value="Medio">Medio</option>
+                                <option value="Bajo">Bajo</option>
                             </select>
                         </td>
+                        <td>    
+                            <select class="front" >
+                                <option value="${aplis.front}" selected>${aplis.front}</option>
+                                <option value="Avanzado">Avanzado</option>
+                                <option value="Alto">Alto</option>
+                                <option value="Medio">Medio</option>
+                                <option value="Bajo">Bajo</option>
+                            </select>
+                        </td>                        
+                        <td>    
+                            <select class="data" >
+                                <option value="${aplis.data}" selected>${aplis.data}</option>
+                                <option value="Avanzado">Avanzado</option>
+                                <option value="Alto">Alto</option>
+                                <option value="Medio">Medio</option>
+                                <option value="Bajo">Bajo</option>
+                            </select>
+                        </td>                        
+                        <td>    
+                            <select class="backend" >
+                                <option value="${aplis.backend}" selected>${aplis.backend}</option>
+                                <option value="Avanzado">Avanzado</option>
+                                <option value="Alto">Alto</option>
+                                <option value="Medio">Medio</option>
+                                <option value="Bajo">Bajo</option>
+                            </select>
+                        </td>                        
+                        <td>    
+                            <select class="legacy" >
+                                <option value="${aplis.distrilegacy}" selected>${aplis.distrilegacy}</option>
+                                <option value="Avanzado">Avanzado</option>
+                                <option value="Alto">Alto</option>
+                                <option value="Medio">Medio</option>
+                                <option value="Bajo">Bajo</option>
+                            </select>
+                        </td>
+                        <td>    
+                            <select class="apiservice" >
+                                <option value="${aplis.apiservice}" selected>${aplis.apiservice}</option>
+                                <option value="Avanzado">Avanzado</option>
+                                <option value="Alto">Alto</option>
+                                <option value="Medio">Medio</option>
+                                <option value="Bajo">Bajo</option>
+                            </select>
+                        </td>                        
                         <td>
                             <button class="update-button">Update</button>
-                            <button class="delete-button">Delete</button>
                         </td>
                         <td class="registro" style="display:none">${theID}</td>
                     </tr>
                     `)
                 })
-                tbody.append(`
-                    <tr>
-                        <td class="id" style="display:none"></td>
-                        <td>
-                            <input type="text" class="codigoi" >
-                        </td>
-                        <td>
-                        <input type="text" class="descripcioni" >
-                        </td>
-                        <td>    
-                            <select class="tipoi">
-                                <option selected>Seleccione</option>
-                                <option value="Técnico">Técnico</option>
-                                <option value="Funcional">Funcional</option>
-                                <option value="Ether">Ether</option>
-                            </select>
-                        </td>
-                        <td>    
-                            <select class="niveli">
-                                <option selected>Seleccione</option>
-                                <option value="Básico">Básico</option>
-                                <option value="Intermedio">Intermedio</option>
-                                <option value="Avanzado">Avanzado</option>
-                                <option value="Experto">Experto</option>
-                            </select>
-                        </td>
-
-                        <td>
-                            <button class="new-button">Nuevo</button>
-                        </td>
-                        <td class="registroi" style="display:none">${theID}</td>
-                    </tr>   
-                `)
             }
         })
     });
@@ -86,22 +92,25 @@ $(function (){
     $('table').on('click','.update-button',function(){
        let row = $(this).closest('tr'); 
        let registro = row.find('.registro').text();
-       let id =  Number(row.find('.id').text());
-       let codigo = row.find('.codigo').val();
-       let descripcion = row.find('.descripcion').val();       
-       let tipo = row.find('.tipo').val();              
-       let nivel = row.find('.nivel').val();                     
-        console.log(id);
+       let host =  row.find('.host').val();
+       let nacar = row.find('.nacar').val();
+       let front = row.find('.front').val();       
+       let data = row.find('.data').val();              
+       let backend = row.find('.backend').val();                     
+       let legacy = row.find('.legacy').val();              
+       let apiservice = row.find('.apiservice').val();                     
+
        $.ajax({
-           url:"/aplis/" + registro,
+           url:"/princ/" + registro,
            method: 'PUT',
            data:{
-               id:id,
-               codigo:codigo,
-               descripcion:descripcion,
-               tipo:tipo,
-               nivel:nivel,                              
-               registro:registro
+               host:host,
+               nacar:nacar,
+               front:front,
+               data:data,
+               backend:backend,                              
+               legacy:legacy,
+               apiservice:apiservice
            },
            success: function(response){
             console.log(response);
@@ -109,50 +118,4 @@ $(function (){
            }
        })
     });
-    $('table').on('click','.delete-button',function(){
-        let row = $(this).closest('tr'); 
-        let registro = row.find('.registro').text();
-        let id =  Number(row.find('.id').text());
-        let codigo = row.find('.codigo').val();
-        let descripcion = row.find('.descripcion').val();
-        console.log("del:" + registro);
-         $.ajax({
-            url:'/aplis/' + registro,
-            method:'DELETE',
-            data:{
-                id:id,
-                codigo:codigo,
-                descripcion:descripcion,
-                registro:registro
-            },    
-            success: function(response){
-                console.log(response);
-                $('#getAplis').click();
-            }
-        })
-    });
-    $('table').on('click','.new-button',function(){
-        let row = $(this).closest('tr'); 
-        let registro = row.find('.registroi').text();
-        let codigo = row.find('.codigoi').val();
-        let descripcion = row.find('.descripcioni').val();       
-        let nivel = row.find('.niveli').val();
-        let tipo = row.find('.tipoi').val();
-        $.ajax({
-            url:"/aplis/" + registro,
-            method: 'POST',
-            data:{
-                codigo:codigo,
-                descripcion:descripcion,
-                tipo:tipo,
-                nivel:nivel,                                
-                registro:registro
-            },
-            success: function(response){
-             console.log(response);
-             $('#getAplis').click();
-            }
-        })
-     });
-
 })
